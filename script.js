@@ -19,12 +19,25 @@ const switchPlayer = () => {
   player1EL.classList.toggle('player--active');
 };
 // Starting conditions
-score0EL.textContent = 0;
-score1EL.textContent = 0;
-diceEL.classList.add('hidden');
-const scores = [0, 0];
-let activePlayer = 0;
-let currentScore = 0;
+let scores, activePlayer, currentScore;
+// initial the game
+const init = () => {
+  playing = true;
+  score0EL.textContent = 0;
+  score1EL.textContent = 0;
+  current0EL.textContent = 0;
+  current1EL.textContent = 0;
+  diceEL.classList.add('hidden');
+  scores = [0, 0];
+  activePlayer = 0;
+  currentScore = 0;
+  player0EL.classList.add('player--active');
+  player1EL.classList.remove('player--active');
+  player0EL.classList.remove('player--winner');
+  player1EL.classList.remove('player--winner');
+};
+init();
+
 // Add to Scores Function
 
 // Rolling Dice Functionality
@@ -70,3 +83,5 @@ btnHold.addEventListener('click', () => {
     }
   }
 });
+
+btnNew.addEventListener('click', init);
