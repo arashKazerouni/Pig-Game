@@ -8,12 +8,16 @@ const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 const current0EL = document.querySelector('#current--0');
 const current1EL = document.querySelector('#current--1');
+const player0EL = document.querySelector('.player--0');
+const player1EL = document.querySelector('.player--1');
 // Starting conditions
 score0EL.textContent = 0;
 score1EL.textContent = 0;
 diceEL.classList.add('hidden');
-
+const scores = [0, 0];
+let activePlayer = 0;
 let currentScore = 0;
+// Add to Scores Function
 
 // Rolling Dice Functionality
 btnRoll.addEventListener('click', () => {
@@ -26,8 +30,14 @@ btnRoll.addEventListener('click', () => {
   if (dice !== 1) {
     //   Add to current score
     currentScore += dice;
-    current0EL.textContent = currentScore;
+    document.querySelector(`#current--${activePlayer}`).textContent =
+    currentScore;
   } else {
-    //   Swtich to next player
+    //   Swtich to next
+    document.querySelector(`#current--${activePlayer}`).textContent = 0;
+    currentScore = 0;
+    activePlayer = activePlayer === 0 ? 1 : 0;
+    player0EL.classList.toggle('player--active');
+    player1EL.classList.toggle('player--active');
   }
 });
